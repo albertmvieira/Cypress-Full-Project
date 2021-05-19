@@ -1,0 +1,24 @@
+{
+  "name": "cypressautomation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress open",
+    "test": "node_modules\\.bin\\cypress run",
+    "headTest": "npm run test -- --headed",
+    "chromeTest": "npm run test -- --browser chrome",
+    "recordDashBoardTest": "npm run test -- --record --key 9f8539b2-c409-45c6-b750-d8c158165cdf --reporter mochawesome",
+    "greenKart": "npm run test -- --spec \"cypress/integration/greenKart/*\"",
+    "examples": "npm run recordDashBoardTest -- --spec \"cypress/integration/examples/*\""
+  },
+  "author": "Albert Vieira",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^6.8.0",
+    "cypress-iframe": "^1.0.1",
+    "cypress-sql-server": "^1.0.0",
+    "mocha": "^8.3.2",
+    "mochawesome": "^6.2.2"
+  }
+}

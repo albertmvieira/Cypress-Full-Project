@@ -1,0 +1,100 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-03-31T14:18:41.296Z",
+    "end": "2021-03-31T14:19:00.329Z",
+    "duration": 19033,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "f13ae933-5eb0-44c3-860d-b45231caef7e",
+      "title": "",
+      "fullFile": "cypress\\integration\\examples\\test9Framework.js",
+      "file": "cypress\\integration\\examples\\test9Framework.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "c0376026-5bdb-43da-a295-9028992f417b",
+          "title": "Framework Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Before and Fixtures test case",
+              "fullTitle": "Framework Test Before and Fixtures test case",
+              "timedOut": null,
+              "duration": 16016,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var homePage = new _HomePage[\"default\"]();\nvar productPage = new _ProductPage[\"default\"](); //pegando a URL direto do cypress.json env - Lugar para criar variaveis globais que podem ser chamadas diretamente através do comando Cypress\ncy.visit(Cypress.env('url') + \"/angularpractice/\"); //this.dados.name - utilizando a chave name declarada no arquivo .json de fixtures\nhomePage.getEditBox().type(this.dados.name);\nhomePage.getGender().select(this.dados.gender);\nhomePage.getTwoWayDataBinding().should('have.value', this.dados.name); //have.attr extraindo o valor de um atributo de um elemento\nhomePage.getEditBox().should('have.attr', 'minlength', '2');\nhomePage.getEntreperneaur().should('be.disabled'); //Cypress.config possibilita sobrepor configurações do cypress.json neste caso sobreponto timeout para o próximo comando. fica válido apenas ao teste\nCypress.config('defaultCommandTimeout', 10000);\nhomePage.getShopTab().click(); //cy.pause() - para aplicação para poder analisar os script, depois é só clicar em resume no runner do cypress\n//cy.pause()\n//cy.get(':nth-child(2) > .nav-link').click().debug - o debug no final para a execução neste ponto para poder debugar, funciona como o pause\n//chamando comando(metodo) customizado na classe commands.js \"selectProduct\" nome do comando criado\n//this.dados = utilizando variavel global criada no before que referencia o fixture example.json\n//prductName foi criado como aray no example.json, por isso esta sendo realizado um foreach passando cada elemento deste array para o metodo selectProduct. Irá executar de acrodo com o tamanho do array, clicando nos produtos informados\nthis.dados.productName.forEach(function (element) {\n  cy.log(\"Name of the Product selected:  \" + element);\n  cy.selectProduct(element);\n});\nproductPage.getCheckOutButton().click();\nvar sum = 0; //each = Comando do cypress para foreach. Encontrar um elemento no array\ncy.get('tr td:nth-child(4) strong').each(function ($el, index, $list) {\n  cy.log(\"Valor com formatação: \" + $el.text());\n  var valor = $el.text(); //utilizando 'var' para criar variavel ao inves de const pois reutilizaremos a varialvel para sobreescrever o proprio valor\n  //utilizando os comandos javascript split e trim para formatar o valor\n  var res = valor.split(\" \");\n  res = res[1].trim();\n  cy.log(\"Valor formatado: \" + res); //Utilizando comando Number para formatar para numero\n  sum = Number(sum) + Number(res);\n}) //utilizando then devido javascript ser assincrono, caso contrario iria imprimir o valor de sum como zero pois não executaria na sequencia\n.then(function () {\n  cy.log(\"Soma dos Valores: \" + String(sum));\n});\ncy.get('h3 strong').then(function (element) {\n  var total = element.text().split(\" \");\n  total = total[1].trim();\n  expect(Number(total)).to.equal(sum);\n}); //contains procura um elemento que contém o texto\ncy.contains('Checkout').click();\ncy.get('#country').type('India');\ncy.get('.suggestions > ul > li > a').click(); //usando force true no clique pois assim clica mesmo que outro elemento estejo encobrindo sua visualização\ncy.get('#checkbox2').click({\n  force: true\n});\ncy.get('input[type=\"submit\"]').click(); //cy.get('.alert').should('have.text','Success! Thank you! Your order will be delivered in next few weeks :-).')\n//validação do texto acima não foi possivel através do should.have.text pq o texto esta vindo com quebras de linhas e outros caracteres\n//necessário armazenar em uma varável e verifica se contem o texto\ncy.get('.alert').then(function (element) {\n  var actualText = element.text(); //validando o texto com .to.be.true do Chai expect \n  expect(actualText.includes(\"Success! Thank you! Your order will be delivered in next few weeks :-).\")).to.be[\"true\"];\n});",
+              "err": {},
+              "uuid": "fc5f9693-b633-48db-81cc-3316b500e1b5",
+              "parentUUID": "c0376026-5bdb-43da-a295-9028992f417b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "fc5f9693-b633-48db-81cc-3316b500e1b5"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 16016,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": null,
+      "version": "5.2.0"
+    }
+  }
+}

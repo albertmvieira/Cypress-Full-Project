@@ -1,0 +1,26 @@
+{
+  "chromeWebSecurity": true,
+  "modifyObstructiveCode": false,
+  "experimentalSourceRewriting": true,
+  "defaultCommandTimeout": 8000,
+  "pageLoadTimeout": 15000,
+  "reporter": "mochawesome",
+  "env": {
+    "url": "https://rahulshettyacademy.com"
+  },
+  "retries": {
+    "runMode": 1,
+    "openMode": 0
+  },
+  "projectId": "m3i5ns",
+  "db": {
+    "userName": "Albert",
+    "password": "Cypress@1",
+    "server": "cypdbdemo.database.windows.net",
+    "options": {
+      "database": "cypressTest",
+      "encrypt": true,
+      "rowCollectionOnRequestCompletion": true
+    }
+  }
+}
